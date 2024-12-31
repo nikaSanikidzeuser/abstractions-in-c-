@@ -1,81 +1,34 @@
-
-#include <cmath>
+#include <iostream>
 #include <string>
 #include <cctype>
-#include <iostream>
 using namespace std;
 
-int totalPoints=0;
-int sumUp(string input);
-
+string createRegularPlural(string word);
 
 int main() {
+    string str = "";
+    getline(cin,str);
+    cout<<createRegularPlural(str);
     
-    string name = "";
-    getline(cin,name);
-    cout<<sumUp(name);
     return 0;
 }
 
-int sumUp(string input){
-    for(int i = 0; i<input.length();i++){
-        char c = input[i];
-        switch (c) {
+
+string createRegularPlural(string word){
+    string result = word;
+    int n = word.length()-1;
+    if( word[n] == 's' || word[n] == 'x' || word[n] == 'z' ){
+        result += "es";
+    }else
+        if(word.substr(n-1,n) == "ch" || word.substr(n-1,n) == "sh"){
+            result += "es";
+        }else
+            if( word[n] == 'y'){
+                result.erase(n);
                 
-            case 'A':
-            case 'E':
-            case 'I':
-            case 'L':
-            case 'N':
-            case 'O':
-            case 'R':
-            case 'S':
-            case 'T':
-            case 'U':
-                totalPoints += 1;
-                break;
-                
-                
-            case 'D':
-            case 'G':
-                totalPoints += 2;
-                break;
-                
-                
-            case 'B':
-            case 'C':
-            case 'M':
-            case 'P':
-                totalPoints += 3;
-                break;
-                
-                
-            case 'F':
-            case 'H':
-            case 'V':
-            case 'W':
-            case 'Y':
-                totalPoints += 4;
-                break;
-                
-            case 'K':
-                totalPoints += 5;
-                break;
-                
-                
-            case 'J':
-            case 'X':
-                totalPoints += 8;
-                break;
-                
-                
-            case 'Q':
-            case 'Z':
-                totalPoints += 10;
-                break;
-            default:
-                break;
-        };
-    };
-    return totalPoints;
+                result += "ies";
+            }else{
+                return result+"s";
+            }
+    return result;
 }

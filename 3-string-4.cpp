@@ -1,29 +1,32 @@
-#include <cmath>
+#include <iostream>
 #include <string>
 #include <cctype>
-#include <iostream>
 using namespace std;
 
-string capitilize(string input);
+
+string addCommas(int n);
 
 
 int main() {
-    string input = "";
-    getline(cin,input);
-    cout<<capitilize(input);
-    
+    int n;
+    cin>>n;
+    cout<<addCommas(n);
     return 0;
 }
 
-string capitilize(string input){
+string addCommas(int n){
+    string result = to_string(n);
+    int len = result.length();
+    int commaCount = 0;
     
-    if(isalpha(input[0])){
-        input[0] = toupper(input[0]);
-    }
-    for(int i = 0 ; i<input.length();i++){
-        if(isalpha(input[i+1])){
-            input[i+1] = tolower(input[i+1]);
+    for (int i = len - 1; i > 0; i--) {
+        commaCount++;
+        if (commaCount == 3) {
+            result.insert(i, ",");
+            commaCount = 0;
         }
     }
-    return input;
+    
+    return result;
 }
+

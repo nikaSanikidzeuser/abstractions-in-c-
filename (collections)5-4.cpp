@@ -65,14 +65,14 @@ void histogram(ifstream &stream)
          cout << "Histogram " << endl;
          for (const auto &entry : count)
          {
-            cout << entry.first << "0 s : ";
+            (entry.first != 10) ? cout << entry.first << "0 s : " : cout << entry.first << "0  : ";
             for (int j = 0; j < entry.second; j++)
             {
                cout << " *";
             }
             cout << endl;
          }
-            stream.close();
+         stream.close();
       }
    }
 }

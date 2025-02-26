@@ -72,6 +72,7 @@ void histogram(ifstream &stream)
             }
             cout << endl;
          }
+            stream.close();
       }
    }
 }
